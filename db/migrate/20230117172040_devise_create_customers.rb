@@ -42,7 +42,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       t.boolean :is_deleted, null: false, default: false
 
 
-      t.timestamps null: false
+      t.timestamps
     end
 
     add_index :customers, :email,                unique: true
