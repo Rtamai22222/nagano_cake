@@ -6,11 +6,11 @@ class Admin::GenresController < ApplicationController
 
   def create
     genre = Genre.new(genre_params)
-    @genres = Genre.all
     if genre.save
       # flash[:notice] = "successfully created"
       redirect_to admin_genres_path
     else
+      @genres = Genre.all
       render :index
     end
   end

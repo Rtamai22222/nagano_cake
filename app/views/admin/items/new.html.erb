@@ -1,2 +1,58 @@
 <h1>Admin::Items#new</h1>
 <p>Find me in app/views/admin/items/new.html.erb</p>
+<h4>商品新規登録</h4>
+<div class="row">
+  <%= form_with model: @item, url: admin_items_path do |f| %>
+    <div class="row form-group align-items-center my-2">
+      <!--<label for="item-image-field" class="col-2 col-form-label">ジャンル名</label>-->
+      <label for="item-image-field" class="col-3">商品画像</label>
+      <div class="col-5 pe-0">
+      <%= f.file_field :image, accept: "image/*", class: "w-100", id: "item-image-field" %>
+      </div>
+    </div>
+
+    <div class="row form-group align-items-center my-2">
+      <label for="item-name-field" class="col-3">商品名</label>
+      <div class="col-5 pe-0">
+        <%= f.text_field :name, class: "form-control", id: "item-name-field" %>
+      </div>
+    </div>
+
+    <div class="row form-group align-items-baseline my-2">
+      <label for="item-introduction-field" class="col-3">商品説明</label>
+      <div class="col-5 pe-0">
+        <%= f.text_area :introduction, class: "col-auto form-control", id: "item-introduction-field", rows: "4" %>
+      </div>
+    </div>
+
+    <div class="row form-group align-items-center my-2">
+      <label for="item-genre_id-field" class="col-3">ジャンル</label>
+      <div class="col-5 pe-0">
+        <%= f.collection_select :genre_id, @genres, :id, :name, {prompt: "--選択してください"}, {id: "item-genre_id-field"} %>
+      </div>
+    </div>
+
+    <div class="row form-group align-items-center my-2">
+      <label for="item-price-field" class="col-3">税抜価格</label>
+      <div class="col-5 pe-0">
+        <%= f.number_field :price, class: "form-control", id: "item-price-field" %>
+      </div>
+      <span class="col-auto ps-0">円</span>
+    </div>
+
+    <div class="row form-group align-items-center my-2">
+      <label class="col-3">販売ステータス</label>
+      <div class="col-5 pe-0">
+        <%= f.radio_button :is_active, :true, checked: true %>
+        <%= f.label :is_active, "販売中", value: true %>
+        <%= f.radio_button :is_active, :false %>
+        <%= f.label :is_active, "販売停止中", value: false %>
+      </div>
+    </div>
+
+
+    <div class="col-sm-auto form-group my-2">
+      <%= f.submit "Update Book", class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>

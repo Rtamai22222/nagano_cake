@@ -7,10 +7,10 @@
 <div class="row">
   <%= form_with model: @genre, url: admin_genre_path, method: :patch, class: "row align-items-center" do |f| %>
     <div class="col-md-2 form-group align-items-center">
-      <label for="genre-form">ジャンル名</label>
+      <label for="edit-genre-name-field">ジャンル名</label>
     </div>
     <div class="col-md-3 form-group">
-      <%= f.text_field :name, class: "form-control", id: "genre-form" %>
+      <%= f.text_field :name, class: "form-control", id: "edit-genre-name-field" %>
     </div>
     <div class="col-md-auto form-group">
       <%= f.submit "Update Book", class: "btn btn-success" %>
