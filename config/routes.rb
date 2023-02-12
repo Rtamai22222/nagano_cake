@@ -10,10 +10,12 @@ Rails.application.routes.draw do
 
   root to: 'public/homes#top'
   get '/about' => 'public/homes#about', as: "about"
-  get '/items' => 'public/items#index'
-  get '/items/:id' => 'public/items#show/:id'
-  # resources :items, only: [:index, :show]
   
+  scope module: 'public' do
+    resources :items, only: [:index, :show]  
+    resources :cart_items, only: [:index, :create, :update]
+  end
+
   namespace :public do
     # resources :items, only: [:index, :show]
   end
@@ -23,7 +25,6 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
-    # resources :orders, only: [:index, :show, :update]
     resources :orders, only: [:show, :update] do
       member do
         get :one_person

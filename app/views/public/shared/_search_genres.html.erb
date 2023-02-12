@@ -1,13 +1,13 @@
-<table class="table">
+<table class="border">
   <thead>
-    <tr>
-      <th>1</th>
+    <tr class="border-bottom">
+      <th>ジャンル検索</th>
     </tr>
   </thead>
   <tbody>
-    <%= @genres.each do |genrelist| %>
+    <% genres.each do |genrelist| %>
       <tr>
-        <td><%= link_to genrelist.name %></td>
+        <td><%= link_to genrelist.name, items_path(genre_id: genrelist.id) %></td>
       </tr>
     <% end %>
   </tbody>
