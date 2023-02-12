@@ -1,0 +1,14 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= @genres.each do |genrelist| %>
+      <tr>
+        <td><%= link_to genrelist.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,20 @@
+<div class="container">
+  <h4><%= @customer.last_name + @customer.first_name %>さんの注文履歴</h4>
+  <div class="row">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |orderlist| %>
+          <tr>
+            <td></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+

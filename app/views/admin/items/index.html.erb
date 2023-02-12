@@ -26,10 +26,20 @@
       <% @items.each do |itemlist| %>
         <tr>
           <td><%= itemlist.id %></td>
-          <td><%= itemlist.name %></td>
+          <td>
+            <%= link_to admin_item_path(itemlist.id) do %>
+              <span><%= itemlist.name %></span>
+            <% end %>
+          </td>
           <td><%= itemlist.price %></td>
           <td><%= itemlist.genre_id %></td>
-          <td><%= itemlist.is_active %></td>
+          <td>
+            <% if itemlist.is_active == true %>
+              <span class="text-success">販売中</span>
+            <% elsif itemlist.is_active == false %>
+              <span class="text-secondary">販売停止中</span>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

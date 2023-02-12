@@ -21,9 +21,27 @@ class Admin::ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
+    genre = Genre.find(@item.genre_id)
+    @genre = genre.name
+    item_price = @item.price*1.1
+    @include_tax = item_price.floor
   end
 
   def edit
+    @item = Item.find(params[:id])
+    @genres = Genre.all
+  end
+
+  def update
+     @item = Item.find(params[:id])
+    if @item.update(item_params)
+      # flash[:notice] = "You have updated book successfully."
+      redirect_to admin_items_path
+    else
+      @genres = Genre.all
+      render :edit
+    end
   end
 
   private

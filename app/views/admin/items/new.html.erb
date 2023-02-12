@@ -43,7 +43,7 @@
     <div class="row form-group align-items-center my-2">
       <label class="col-3">販売ステータス</label>
       <div class="col-5 pe-0">
-        <%= f.radio_button :is_active, :true, checked: true %>
+        <%= f.radio_button :is_active, :true %>
         <%= f.label :is_active, "販売中", value: true %>
         <%= f.radio_button :is_active, :false %>
         <%= f.label :is_active, "販売停止中", value: false %>

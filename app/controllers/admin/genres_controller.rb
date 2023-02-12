@@ -25,6 +25,7 @@ class Admin::GenresController < ApplicationController
       # flash[:notice] = "You have updated book successfully."
       redirect_to admin_genres_path
     else
+      @genre = genre
       render :edit
     end
   end

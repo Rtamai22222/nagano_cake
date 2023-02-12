@@ -1,2 +1,56 @@
 <h1>Admin::Customers#edit</h1>
 <p>Find me in app/views/admin/customers/edit.html.erb</p>
+<!--<flash>-->
+<div class="container">
+  <h4><%= @customer_fullname %>さんの会員情報編集</h4>
+  <%= form_with model: @customer, url: admin_customer_path, method: :patch do |f| %>
+    <div class="row justify-content-start">
+      <span class="col-md-auto">会員ID</span>
+      <span class="col-md-auto"><%= @customer.id %></span>
+    </div>
+
+    <div class="row justify-content-start">
+      <span class="col-md-auto">氏名</span>
+      <%= f.text_field :last_name, class: "col-md-auto" %>
+      <%= f.text_field :first_name, class: "col-md-auto" %>
+    </div>
+
+    <div class="row justify-content-start">
+      <span class="col-md-auto">フリガナ</span>
+      <%= f.text_field :last_name_kana, class: "col-md-auto" %>
+      <%= f.text_field :first_name_kana, class: "col-md-auto" %>
+    </div>
+
+    <div class="row justify-content-start">
+      <span class="col-md-auto">郵便番号</span>
+      <%= f.text_field :postal_code, class: "col-md-auto" %>
+    </div>
+
+    <div class="row justify-content-start">
+      <span class="col-md-auto">住所</span>
+      <%= f.text_field :address, class: "col-md-auto" %>
+    </div>
+
+    <div class="row justify-content-start">
+      <span class="col-md-auto">電話番号</span>
+      <%= f.text_field :telephone_number, class: "col-md-auto" %>
+    </div>
+
+    <div class="row justify-content-start">
+      <span class="col-md-auto">メールアドレス</span>
+      <%= f.text_field :email, class: "col-md-auto" %>
+    </div>
+
+    <div class="row justify-content-start">
+      <span class="col-md-auto">会員ステータス</span>
+      <div class="col-md-auto">
+        <%= f.radio_button :is_deleted, :false %>
+        <%= f.label :is_deleted, "有効", value: false %>
+        <%= f.radio_button :is_deleted, :true %>
+        <%=f.label :is_deleted, "退会", value: true %>
+      </div>
+    </div>
+
+    <%= f.submit "変更を保存", class: "btn btn-success" %>
+  <% end %>
+</div>
