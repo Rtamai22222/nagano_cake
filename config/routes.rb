@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  # namespace :public do
+  #   get 'orders/new'
+  #   get 'orders/index'
+  #   get 'orders/show'
+  # end
+  # namespace :public do
+  #   get 'customers/show'
+  #   get 'customers/edit'
+  # end
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -9,16 +18,28 @@ Rails.application.routes.draw do
   }
 
   root to: 'public/homes#top'
-  get '/about' => 'public/homes#about', as: "about"
-  
+
   scope module: 'public' do
-    resources :items, only: [:index, :show]  
-    resources :cart_items, only: [:index, :create, :update]
+    get '/about' => 'homes#about'
+    resources :items, only: [:index, :show]
+    resources :customers, only: [:show, :edit, :update]
+    resources :cart_items, only: [:index, :create, :update, :destroy] do
+      collection do
+        delete :destroy_all
+      end
+        # delete :destroy_all, on: :collection 
+    end
+    resources :orders, only: [:index, :new, :show, :create] do
+      collection do
+        post :confirm
+        get :conplete
+      end  
+    end
   end
 
-  namespace :public do
-    # resources :items, only: [:index, :show]
-  end
+  # namespace :public do
+  #   # resources :items, only: [:index, :show]
+  # end
 
   namespace :admin do
     root to: 'homes#top'

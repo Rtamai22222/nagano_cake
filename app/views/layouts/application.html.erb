@@ -38,9 +38,15 @@
                   <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
                 </li>
               <% elsif customer_signed_in? %>
-                <li class="nav-item border border-white rounded p-1 m-1">About</li>
-                <li class="nav-item border border-white rounded p-1 m-1">商品一覧</li>
-                <li class="nav-item border border-white rounded p-1 m-1">新規登録</li>
+                <li class="nav-item border border-white rounded p-1 m-1">
+                  <%= link_to 'マイページ', customer_path(current_customer.id) %>
+                </li>
+                <li class="nav-item border border-white rounded p-1 m-1">
+                  <%= link_to '商品一覧', items_path %>
+                </li>
+                <li class="nav-item border border-white rounded p-1 m-1">
+                  <%= link_to 'カート', cart_items_path %>
+                </li>
                 <li class="nav-item border border-white rounded p-1 m-1">
                   <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %>
                 </li>
