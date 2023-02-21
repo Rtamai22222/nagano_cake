@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'addersses/index'
+    get 'addersses/edit'
+  end
   # namespace :public do
   #   get 'orders/new'
   #   get 'orders/index'
@@ -22,19 +26,25 @@ Rails.application.routes.draw do
   scope module: 'public' do
     get '/about' => 'homes#about'
     resources :items, only: [:index, :show]
-    resources :customers, only: [:show, :edit, :update]
+    resource :customer, only: [:show, :edit, :update] do
+      collection do
+        get :unsubscribe
+        patch :withdrawal
+      end
+    end
     resources :cart_items, only: [:index, :create, :update, :destroy] do
       collection do
         delete :destroy_all
       end
-        # delete :destroy_all, on: :collection 
+        # delete :destroy_all, on: :collection
     end
     resources :orders, only: [:index, :new, :show, :create] do
       collection do
         post :confirm
         get :conplete
-      end  
+      end
     end
+    resources :addersses, only: [:index, :edit, :create, :update, :destroy]
   end
 
   # namespace :public do

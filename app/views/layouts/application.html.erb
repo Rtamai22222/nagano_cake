@@ -39,7 +39,7 @@
                 </li>
               <% elsif customer_signed_in? %>
                 <li class="nav-item border border-white rounded p-1 m-1">
-                  <%= link_to 'マイページ', customer_path(current_customer.id) %>
+                  <%= link_to 'マイページ', customer_path %>
                 </li>
                 <li class="nav-item border border-white rounded p-1 m-1">
                   <%= link_to '商品一覧', items_path %>
