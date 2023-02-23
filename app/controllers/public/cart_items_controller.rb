@@ -11,8 +11,11 @@ class Public::CartItemsController < ApplicationController
   def create
     @cart = CartItem.new(cart_params)
     if customer_signed_in?
-      @cart.save
-      redirect_to cart_items_path
+      if @cart.save
+        redirect_to cart_items_path
+      else
+        render item_path(params[:id])
+      end
     else
       redirect_to new_customer_registration_path
     end

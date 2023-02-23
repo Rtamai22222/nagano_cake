@@ -9,14 +9,15 @@
       <% @items.each do |itemlist| %>
         <div>
           <%= link_to item_path(itemlist.id) do %>
-            <% if itemlist.image.attached? %>
-              <%= image_tag itemlist.image %>
-            <% else %>
-              <%= image_tag 'default-image' %>
-            <% end %>
-          <% end %>
+            <%# if itemlist.image.attached? %>
+              <%#= image_tag itemlist.image %>
+            <%# else %>
+              <%#= image_tag 'default-image' %>
+            <%# end %>
+          <%= image_tag itemlist.get_image(100,100) %>
           <%= itemlist.name %>
           <%= itemlist.price %>
+          <% end %>
         </div>
       <% end %>
     </div>

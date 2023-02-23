@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+/*::placeholder*/
+::placeholder{ /* Others */
+ color: red;
+}

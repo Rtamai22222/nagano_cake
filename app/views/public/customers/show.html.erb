@@ -35,15 +35,11 @@
         <td>メールアドレス</td>
         <td><%= @customer.email %></td>
       </tr>
-      <tr>
-        <td>仮設</td>
-        <td><%= @customer.is_deleted %></td>
-      </tr>
     </table>
   </div>
   <div class="row align-items-center justify-content-start">
     <span class="col-auto">配送先</span>
-    <%= link_to '一覧を見る', addersses_path, class: 'col-auto btn btn-primary' %>
+    <%= link_to '一覧を見る', addresses_path, class: 'col-auto btn btn-primary' %>
   </div>
   <div class="row align-items-center justify-content-start">
     <span class="col-auto">注文履歴</span>

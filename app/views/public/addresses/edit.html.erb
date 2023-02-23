@@ -1,0 +1,32 @@
+<h1>Public::Addresses#edit</h1>
+<p>Find me in app/views/public/addresses/edit.html.erb</p>
+<div class="container">
+  <%= render "shared/title", title: "配送先編集" %>
+  <div class="row">
+    <%= form_with model: @address, url: address_path, method: :patch do |f| %>
+      <%= f.hidden_field :customer_id, :value => current_customer.id %>
+      <div class="row mb-3">
+        <label for="inputPostalCode" class="col-md-3 col-form-label">郵便番号(ハイフンなし)</label>
+        <div class="col-md-auto ps-0">
+          <!--<input type="email" class="form-control" id="inputEmail">-->
+          <%= f.text_field :postal_code, class: "form-control", id: "inputPostalCode", placeholder: "例:0000000" %>
+        </div>
+      </div>
+      <div class="row mb-3">
+      <label for="inputAddress" class="col-md-3 col-form-label">住所</label>
+        <div class="col-md-auto ps-0">
+          <%= f.text_field :address, size: "50", class: "form-control", id: "inputAddress", placeholder: "例:東京都渋谷区代々木神園町00-00" %>
+        </div>
+      </div>
+      <div class="row mb-3">
+      <label for="inputName" class="col-md-3 col-form-label">宛名</label>
+        <div class="col-md-auto ps-0">
+          <%= f.text_field :name, class: "form-control", id: "inputName", placeholder: "例:令和太郎" %>
+        </div>
+        <div class="col ps-0">
+          <%= f.submit "変更内容を保存", class: "btn btn-success" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

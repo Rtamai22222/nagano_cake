@@ -1,17 +1,4 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'addersses/index'
-    get 'addersses/edit'
-  end
-  # namespace :public do
-  #   get 'orders/new'
-  #   get 'orders/index'
-  #   get 'orders/show'
-  # end
-  # namespace :public do
-  #   get 'customers/show'
-  #   get 'customers/edit'
-  # end
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -44,7 +31,7 @@ Rails.application.routes.draw do
         get :conplete
       end
     end
-    resources :addersses, only: [:index, :edit, :create, :update, :destroy]
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
 
   # namespace :public do
