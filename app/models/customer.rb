@@ -15,4 +15,8 @@ class Customer < ApplicationRecord
   validates :postal_code, presence: true, numericality: { only_integer: true }
   validates :address, presence: true
   validates :telephone_number, presence: true, numericality: { only_integer: true }
+  
+  def full_name
+    last_name + first_name
+  end
 end

@@ -4,22 +4,20 @@
       <%= render 'public/shared/search_genres', genres: @genres %>
     </div>
     <div class="col-md-10">
-      <h3><%= @title %>一覧</h3>
-      <span>全<%= @count %>件</span>
-      <% @items.each do |itemlist| %>
-        <div>
-          <%= link_to item_path(itemlist.id) do %>
-            <%# if itemlist.image.attached? %>
-              <%#= image_tag itemlist.image %>
-            <%# else %>
-              <%#= image_tag 'default-image' %>
-            <%# end %>
-          <%= image_tag itemlist.get_image(100,100) %>
-          <%= itemlist.name %>
-          <%= itemlist.price %>
-          <% end %>
-        </div>
-      <% end %>
+      <div class="row">
+        <h3><%= @title %>一覧</h3>
+        <span>全<%= @count %>件</span>
+        <% @items.each do |itemlist| %>
+          <div class="col-md-3">
+            <%= link_to item_path(itemlist.id) do %>
+              <%= image_tag itemlist.get_image(100,100) %>
+              <div><%= itemlist.name %></div>
+              <div><%= itemlist.price %></div>
+
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

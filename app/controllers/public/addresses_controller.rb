@@ -1,12 +1,15 @@
 class Public::AddressesController < ApplicationController
   def index
     @address = Address.new
-    # @customer = current_customer
-    @addresses = Address.all
+    @addresses = Address.where(customer_id: current_customer.id)
+    @link = addresses_path
+    @method = :post
   end
 
   def edit
     @address = Address.find(params[:id])
+    @link = address_path
+    @method = :patch
   end
 
   def create

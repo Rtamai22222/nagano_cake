@@ -1,7 +1,6 @@
 class Item < ApplicationRecord
-  # belongs_to :genre, foreign_key: 'id'
   belongs_to :genre
-  has_many :cart_items
+  has_many :cart_items, dependent: :destroy
   has_many :order_details
 
   has_one_attached :image
@@ -13,7 +12,9 @@ class Item < ApplicationRecord
   # validates :is_active, presence :true ＝＞boolen型にpresenceは使えない
   validates :is_active, inclusion: [true, false]
   # validates :image, presence: true
-  
+
+  scope :active, -> { where(is_active: true) }
+
   def get_image(width,height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/default-image.jpg')
@@ -21,5 +22,5 @@ class Item < ApplicationRecord
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
 end

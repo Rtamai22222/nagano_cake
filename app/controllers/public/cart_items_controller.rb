@@ -5,7 +5,6 @@ class Public::CartItemsController < ApplicationController
     @cart_items.each do |itemlist|
       @total_price += (itemlist.item.price*1.1).floor*(itemlist.amount)
     end
-    # @items = Item.all
   end
 
   def create

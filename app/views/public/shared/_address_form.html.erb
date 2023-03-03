@@ -1,0 +1,33 @@
+<!--address,link,select_methodに値を与える-->
+<%= form_with model: address, url: link, method: select_method do |f| %>
+  <%= f.hidden_field :customer_id, :value => current_customer.id %>
+  <div class="row mb-3">
+    <div class="col-md-3">
+      <%= f.label :postal_code, "郵便番号(ハイフンなし)", class: "col-form-label" %>
+    </div>
+    <div class="col-md-auto ps-0">
+      <%= f.text_field :postal_code, class: "form-control", placeholder: "例:0000000" %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-3">
+      <%= f.label :address, "住所", class: "col-form-label" %>
+    </div>
+    <div class="col-md-auto ps-0">
+      <%= f.text_field :address, size: "50", class: "form-control", placeholder: "例:東京都渋谷区代々木神園町00-00" %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-3">
+      <%= f.label :name, "宛名", class: "col-form-label" %>
+    </div>
+    <div class="col-md-auto ps-0">
+      <%= f.text_field :name, class: "form-control", placeholder: "例:令和太郎" %>
+    </div>
+    <div class="col ps-0">
+      <%= f.submit btn_text, class: "btn btn-success col-auto" %>
+    </div>
+  </div>
+<% end %>
