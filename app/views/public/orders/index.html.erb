@@ -18,7 +18,7 @@
       <tbody>
         <% @order.each do |orderlist| %>
         <tr>
-          <td><%= orderlist.created_at.strftime('%Y/%m/%d') %></td>
+          <td><%= l orderlist.created_at, format: :short %></td>
           <td>
             <%= "〒" + orderlist.postal_code %><br>
             <%= orderlist.address %><br>
