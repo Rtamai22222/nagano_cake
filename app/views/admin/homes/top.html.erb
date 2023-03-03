@@ -16,9 +16,9 @@
         <% @orders.each do |orderlist| %>
           <tr>
             <td><%= l orderlist.created_at %></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><%= orderlist.customer.full_name %></td>
+            <td><%= orderlist.order_details.total_amount %></td>
+            <td><%= orderlist.status_i18n %></td>
           </tr>
         <% end %>
       </tbody>

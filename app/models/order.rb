@@ -12,7 +12,8 @@ class Order < ApplicationRecord
   validates :status, presence: true
 
   enum payment_method: { credit_card: 0, transfer: 1 }
-  enum status_method: { waiting: 0, confirm: 1, making: 2 }
+  # enum status_method: { payment_pending: 0, payment_confirmed: 1, making: 2, preparing_shipment: 3, shipped: 4 }
+  enum status: { payment_pending: 0, payment_confirmed: 1, making: 2, preparing_shipment: 3, shipped: 4 }
 
   def address_display
     '〒' + postal_code + ' ' + address + ' ' + name
