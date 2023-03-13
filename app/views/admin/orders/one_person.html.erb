@@ -1,5 +1,5 @@
 <div class="container">
-  <h4><%= @customer.last_name + @customer.first_name %>さんの注文履歴</h4>
+  <%= render "shared/title", title: @customer.full_name + "さんの注文履歴" %>
   <div class="row">
     <table>
       <thead>
@@ -10,14 +10,18 @@
         </tr>
       </thead>
       <tbody>
-        <% @tests.each do |orderlist| %>
+        <% @orders.each do |orderlist| %>
           <tr>
-            <td><%= orderlist.created_at %></td>
-            <td><%= orderlist.price %></td>
-            <td></td>
+            <td>
+              <%= link_to admin_order_path(orderlist.id) do %>
+                <%= l orderlist.created_at %>
+              <% end %>
+            </td>
+            <td><%= orderlist.order_details.total_amount %></td>
+            <td><%= orderlist.status_i18n %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
-</diva
+</div>

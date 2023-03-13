@@ -9,4 +9,9 @@ class CartItem < ApplicationRecord
     end
     return total_price
   end
+
+  def subtotal
+    item.with_tax_price*amount
+  end
+
 end

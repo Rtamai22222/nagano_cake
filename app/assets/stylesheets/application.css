@@ -18,3 +18,7 @@
 ::placeholder{ /* Others */
  color: red;
 }
+
+a {
+  text-decoration: none;
+}

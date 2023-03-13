@@ -4,16 +4,12 @@
       <%= render 'public/shared/search_genres', genres: @genres %>
     </div>
     <div class="col-md-4">
-      <% if @item.image.attached? %>
-        <%= image_tag @item.image %>
-      <% else %>
-        <%= image_tag 'default-image' %>
-      <% end %>
+      <%= image_tag @item.get_image(200,150) %>
     </div>
     <div class="col-md-6">
       <h2><%= @item.name %></h2>
       <p><%= @item.introduction %></p>
-      <span>¥<%= @item.price %></span><span>(税込)</span>
+      <%= "¥" + number_with_delimiter(@item.price) + '(税込)' %>
       <div>
       <%= form_with model: @cart, url: cart_items_path do |f| %>
         <%= f.hidden_field :item_id, :value => @item.id %>
@@ -21,7 +17,7 @@
           <%= f.hidden_field :customer_id, :value => current_customer.id %>
         <% end %>
         <% if @item.is_active == true %>
-          <%= f.select :amount, *[1..10] %>
+          <%= f.select :amount, *[1..10], include_blank: "個数選択" ,default: 1 %>
           <%= f.submit "カートに入れる", class: "btn btn-success" %>
         <% else %>
           <%= f.submit "販売停止中", class: "btn btn-secondary", disabled: true %>

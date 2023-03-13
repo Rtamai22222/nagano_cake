@@ -1,19 +1,37 @@
 class Public::CartItemsController < ApplicationController
   def index
-    @cart_items = CartItem.where(customer_id: current_customer.id)
+    @cart_items = current_customer.cart_items
     @total_price = 0
-    @cart_items.each do |itemlist|
-      @total_price += (itemlist.item.price*1.1).floor*(itemlist.amount)
-    end
+  end
+
+  def update
+    cart_item = CartItem.find(params[:id])
+    cart_item.update(cart_item_amount_params)
+    redirect_to cart_items_path
   end
 
   def create
-    @cart = CartItem.new(cart_params)
     if customer_signed_in?
-      if @cart.save
-        redirect_to cart_items_path
+      new_cart_item = CartItem.new(cart_item_params)
+      cart_products = current_customer.cart_items
+      if new_cart_item.amount.present?
+        if cart_products.find_by(item_id: new_cart_item.item_id)
+          existing_item = cart_products.find_by(item_id: new_cart_item.item_id)
+          existing_item.amount += new_cart_item.amount
+          existing_item.update(amount: existing_item.amount)
+          redirect_to cart_items_path
+        else
+          if new_cart_item.save
+            redirect_to cart_items_path
+          else
+            # render item_path(params[:item_id])
+          end
+        end
       else
-        render item_path(params[:id])
+        redirect_to item_path(new_cart_item.item_id)
+        # @genres = Genre.all
+        # @item = Item.find(new_cart_item.item_id)
+        # render template: "public/items/show"
       end
     else
       redirect_to new_customer_registration_path
@@ -34,8 +52,12 @@ class Public::CartItemsController < ApplicationController
 
 private
 
-  def cart_params
+  def cart_item_params
     params.require(:cart_item).permit(:item_id, :customer_id, :amount)
+  end
+
+  def cart_item_amount_params
+    params.require(:cart_item).permit(:amount)
   end
 
 end

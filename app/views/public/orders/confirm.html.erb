@@ -1,5 +1,5 @@
-confirm
-<div class="container">
+<!--public/orders/confirm-->
+<div class="container mt-5">
   <%= render "shared/title", title: "注文情報確認" %>
   <div class="row">
     <div class="col-8">
@@ -63,7 +63,7 @@ confirm
         <%= f.hidden_field :name, value: @order.name %>
         <%= f.hidden_field :shipping_cost, value: @shipping_cost %>
         <%= f.hidden_field :total_payment, value: @total_payment %>
-        <%= f.hidden_field :status, value: 0 %>
+        <%= f.hidden_field :status, value: "payment_pending" %>
         <%= f.submit "注文を確定する", class: "btn btn-success" %>
       <% end %>
     </div>

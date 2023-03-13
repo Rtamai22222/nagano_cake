@@ -1,6 +1,6 @@
-<h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
-<div class="container">
+<!--<h1>Admin::Homes#top</h1>-->
+<!--<p>Find me in app/views/admin/homes/top.html.erb</p>-->
+<div class="container mt-5">
   <%= render "shared/title", title: "注文履歴一覧" %>
   <div class="row">
     <table>
@@ -15,7 +15,11 @@
       <tbody>
         <% @orders.each do |orderlist| %>
           <tr>
-            <td><%= l orderlist.created_at %></td>
+            <td>
+              <%= link_to admin_order_path(orderlist.id) do %>
+                <%= l orderlist.created_at %>
+              <% end %>
+            </td>
             <td><%= orderlist.customer.full_name %></td>
             <td><%= orderlist.order_details.total_amount %></td>
             <td><%= orderlist.status_i18n %></td>

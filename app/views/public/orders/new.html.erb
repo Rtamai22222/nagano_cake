@@ -1,10 +1,8 @@
-<h1>Public::Orders#new</h1>
-<p>Find me in app/views/public/orders/new.html.erb</p>
+<!--<h1>Public::Orders#new</h1>-->
+<!--<p>Find me in app/views/public/orders/new.html.erb</p>-->
 
-<div class="container">
-  <!--<div class="row">-->
+<div class="container mt-5">
   <%= render "shared/title", title: "注文情報入力" %>
-  <!--</div>-->
 
   <%= form_with model: @order, url: confirm_orders_path do |f| %>
     <div>
@@ -20,28 +18,26 @@
       <div class="">
         <%= f.radio_button :select_address, 0, checked: true %>
         <%= f.label :select_address_0, "ご自身の住所" %>
-
-        <%#= radio_button_tag :select_address, 1, :checked %>
-        <%#= label :select_address, 1, "ご自身の住所" %>
         <%= '〒' + current_customer.postal_code + ' ' + current_customer.address %>
         <%= current_customer.last_name + current_customer.first_name %>
       </div>
 
       <div class="">
-        <%= f.radio_button :select_address, 1 %>
-        <%= f.label :select_address_1, "登録済み住所から選択" %>
-        <%#= radio_button_tag :select_address, 2 %>
-        <%#= label :select_address, 2, "登録済み住所から選択" %>
-        <%#= select_tag :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
-        <%= select_tag :address_id, options_from_collection_for_select(@addresses, :id, :address_display) %>
+        <% if @addresses.any? %>
+          <%= f.radio_button :select_address, 1 %>
+          <%= f.label :select_address_1, "登録済み住所から選択" %>
+          <%= select_tag :address_id, options_from_collection_for_select(@addresses, :id, :address_display) %>
+        <% else %>
+          <%= f.radio_button :select_address, 1, disabled: true %>
+          <%= f.label :select_address_1, "登録済み住所から選択", class: "text-secondary text-opacity-75" %>
+          <%= f.select :address_id, {'マイページから配送先を登録できます': 1}, {}, disabled: true %>
+          <%#= select_tag :address_id, options_from_collection_for_select(@addresses, :id, :address_display) %>
+        <% end %>
       </div>
 
       <div class="">
         <%= f.radio_button :select_address, 2, checked: @checked %>
         <%= f.label :select_address_2, "新しいお届け先" %>
-        <%#= radio_button_tag :select_address, 3, @checked %>
-        <%#= label :select_address, 3, "新しいお届け先" %>
-
         <div class="row mb-3">
           <div class="col-md-3">
             <%= f.label :postal_code, "郵便番号(ハイフンなし)", class: "col-form-label" %>
@@ -67,10 +63,6 @@
           </div>
         </div>
       </div>
-      <%#= f.hidden_field :customer_id, value: current_customer.id %>
-      <%#= f.hidden_field :shipping_cost, value: @shipping_cost %>
-      <%#= f.hidden_field :total_payment, value: @total_payment %>
-      <%#= f.hidden_field :status, value: 0 %>
       <%= f.submit "確認画面へ進む", class: "btn btn-primary col-auto" %>
     </div>
   <% end %>

@@ -1,8 +1,8 @@
-<h1>Public::Addresses#edit</h1>
-<p>Find me in app/views/public/addresses/edit.html.erb</p>
-<div class="container">
+<!--<h1>Public::Addresses#edit</h1>-->
+<!--<p>Find me in app/views/public/addresses/edit.html.erb</p>-->
+<div class="container mt-5">
   <%= render "shared/title", title: "配送先編集" %>
   <div class="row">
-    <%= render "public/shared/address_form", address: @address, link: @link, select_method: @method, btn_text: "変更内容を保存" %>
+    <%= render "public/shared/address_form", address: @address, select_path: @path, select_method: @method, btn_text: "変更内容を保存" %>
   </div>
 </div>

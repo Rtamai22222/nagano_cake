@@ -1,47 +1,49 @@
-<h1>Admin::Items#index</h1>
-<p>Find me in app/views/admin/items/index.html.erb</p>
-
-<div class="row">
-  <div class="col-md-auto me-auto ms-2"><h4>商品一覧</h4></div>
-  <div class="col-md-auto">
-    <%= link_to new_admin_item_path do %>
-      <i class="fa-solid fa-plus fa-2x"></i>
-    <% end %>
-  </div>
-</div>
-
-<div class="row">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>商品ID</th>
-        <th>商品名</th>
-        <th>税抜価格</th>
-        <th>ジャンル</th>
-        <th>ステータス</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @items.each do |itemlist| %>
-        <tr>
-          <td><%= itemlist.id %></td>
-          <td>
-            <%= link_to admin_item_path(itemlist.id) do %>
-              <span><%= itemlist.name %></span>
-            <% end %>
-          </td>
-          <td><%= itemlist.price %></td>
-          <td><%= itemlist.genre.name %></td>
-          <td>
-            <% if itemlist.is_active == true %>
-              <span class="text-success">販売中</span>
-            <% elsif itemlist.is_active == false %>
-              <span class="text-secondary">販売停止中</span>
-            <% end %>
-          </td>
-        </tr>
+<!--<h1>Admin::Items#index</h1>-->
+<!--<p>Find me in app/views/admin/items/index.html.erb</p>-->
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-auto me-auto ms-2"><h4>商品一覧</h4></div>
+    <div class="col-md-auto">
+      <%= link_to new_admin_item_path do %>
+        <i class="fa-solid fa-plus fa-2x"></i>
       <% end %>
-    </tbody>
-  </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜価格</th>
+          <th>ジャンル</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @items.each do |itemlist| %>
+          <tr>
+            <td><%= itemlist.id %></td>
+            <td>
+              <%= link_to admin_item_path(itemlist.id) do %>
+                <span><%= itemlist.name %></span>
+              <% end %>
+            </td>
+            <!--<td><%#= itemlist.price %></td>-->
+            <td><%= number_with_delimiter(itemlist.price) %></td>
+            <td><%= itemlist.genre.name %></td>
+            <td>
+              <% if itemlist.is_active == true %>
+                <span class="text-success">販売中</span>
+              <% elsif itemlist.is_active == false %>
+                <span class="text-secondary">販売停止中</span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

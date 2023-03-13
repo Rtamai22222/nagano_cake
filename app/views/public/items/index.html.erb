@@ -10,13 +10,14 @@
         <% @items.each do |itemlist| %>
           <div class="col-md-3">
             <%= link_to item_path(itemlist.id) do %>
-              <%= image_tag itemlist.get_image(100,100) %>
-              <div><%= itemlist.name %></div>
-              <div><%= itemlist.price %></div>
-
+              <%= image_tag itemlist.get_image(150,90) %></br>
+              <%= itemlist.name %></br>
+              <!--<div><%#= itemlist.price %></div>-->
+              <%= "¥" + number_with_delimiter(itemlist.price) %>
             <% end %>
           </div>
         <% end %>
+        <%= paginate @items %>
       </div>
     </div>
   </div>
